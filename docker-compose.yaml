@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Location 1: On-Premise ERP Database
+  erp-db:
+    image: postgres:15-alpine
+    container_name: source_erp_db
+    hostname: onprem-db.local
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: erp_sales
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # Location 2: Remote File System (SFTP Server)
+  remote-ftp:
+    image: atmoz/sftp:alpine
+    container_name: source_remote_ftp
+    hostname: partner-ftp.remote
+    ports:
+      - "2222:22"
+    # User 'datauser', password 'pass', UID '1001'
+    command: datauser:pass:1001
+    volumes:
+      - ./ftp_data:/home/datauser/sales_data
+
+  # Location 3: External Partner API (Legacy WS-*)
+  legacy-soap-api:
+    image: wiremock/wiremock:3.3.1-alpine
+    container_name: source_legacy_ws
+    hostname: legacy-api.external
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./wiremock_mappings:/home/wiremock/mappings
