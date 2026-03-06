@@ -8,7 +8,6 @@
     "headers": {
       "Content-Type": "text/xml"
     },
-    "bodyFileName": "soap_response.xml",
-    "body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ser:GetSalesTargetsResponse><ser:Target><ser:SellerId>1</ser:SellerId><ser:MonthlyTarget>5000.00</ser:MonthlyTarget></ser:Target></ser:GetSalesTargetsResponse></soapenv:Body></soapenv:Envelope>"
+    "body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://example.com/sales/service\"><soapenv:Body><ser:GetSalesTargetsResponse><ser:Target><ser:SellerId>1</ser:SellerId><ser:MonthlyTarget>5000.00</ser:MonthlyTarget></ser:Target></ser:GetSalesTargetsResponse></soapenv:Body></soapenv:Envelope>"
   }
 }
