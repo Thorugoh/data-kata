@@ -1,0 +1,5 @@
+FROM confluentinc/cp-kafka-connect:7.5.0
+
+# Instala os dois plugins necessários de uma vez no build da imagem
+RUN confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.7.4 \
+    && confluent-hub install --no-prompt confluentinc/kafka-connect-sftp:latest

@@ -63,7 +63,9 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 
   kafka-connect:
-    image: confluentinc/cp-kafka-connect:7.5.0
+    build:
+      context: .
+      dockerfile: Dockerfile.connect
     container_name: kafka-connect
     depends_on:
       - kafka
@@ -84,11 +86,3 @@ services:
       CONNECT_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
-    # Automatically install JDBC plugin before starting Connect
-    command:
-      - bash
-      - -c
-      - |
-        echo "Installing Kafka Connect JDBC plugin..."
-        confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.7.4
-        /etc/confluent/docker/run
