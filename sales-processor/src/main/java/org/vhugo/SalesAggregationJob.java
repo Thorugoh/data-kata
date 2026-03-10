@@ -17,6 +17,8 @@ import org.vhugo.data.model.EnrichedSale;
 import org.vhugo.data.model.Location;
 import org.vhugo.data.model.Sale;
 import org.vhugo.data.model.Target;
+import org.vhugo.data.pipeline.CitySalesPipeline;
+import org.vhugo.data.pipeline.SellerSalesPipeline;
 
 public class SalesAggregationJob {
 
@@ -93,9 +95,9 @@ public class SalesAggregationJob {
                     }
                 });
 
-        // 6. Output the Result
-        finalStream.print();
 
+        CitySalesPipeline.build(finalStream);
+        SellerSalesPipeline.build(finalStream);
         env.execute("POC: Flink Sales Data Enrichment");
     }
 }
