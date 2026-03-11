@@ -14,6 +14,7 @@
         <flink.version>2.2.0</flink.version>
         <flink.kafka.version>4.0.1-2.0</flink.kafka.version>
         <jackson.version>2.21.1</jackson.version>
+        <flink.jdbc.version>3.3.0-1.20</flink.jdbc.version>
     </properties>
 
     <dependencies>
@@ -33,6 +34,18 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-clients</artifactId>
             <version>${flink.version}</version>
+        </dependency>
+
+        <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-jdbc</artifactId>
+                <version>${flink.jdbc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.5</version>
         </dependency>
 
         <dependency>
