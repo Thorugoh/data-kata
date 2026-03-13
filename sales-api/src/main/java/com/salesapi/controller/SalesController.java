@@ -1,5 +1,7 @@
 package com.salesapi.controller;
 
+import com.salesapi.model.CitySale;
+import com.salesapi.model.SellerSale;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +19,6 @@ public class SalesController {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public record CitySale(String cityName, Double totalAmount) {}
-    public record SellerSale(String sellerId, Double totalAmount, Double avgPerformance) {}
 
     @GetMapping("/cities/top")
     public List<CitySale> getTopCities() {

@@ -1,4 +1,3 @@
 package com.salesapi.model;
 
-public class SellerSale {
-}
+public record SellerSale(String sellerId, Double totalAmount, Double avgPerformance) {}
