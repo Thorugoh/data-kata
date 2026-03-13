@@ -18,7 +18,7 @@ public class CitySalesPipeline {
     public static void build(DataStream<EnrichedSale> enrichedStream) {
 
         String upsertQuery = "INSERT INTO top_sales_city (city_name, total_amount) VALUES (?, ?) " +
-                "ON CONFLICT (city_name) DO UPDATE SET total_amount = top_sales_city.total_amount + EXCLUDED.total_amount, last_update = CURRENT_TIMESTAMP";
+                "ON CONFLICT (city_name) DO UPDATE SET total_amount = top_sales_city.total_amount + EXCLUDED.total_amount, last_updated = CURRENT_TIMESTAMP";
 
         enrichedStream
                 .keyBy(new KeySelector<EnrichedSale, String>() {

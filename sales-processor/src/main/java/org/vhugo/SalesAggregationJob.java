@@ -24,6 +24,7 @@ public class SalesAggregationJob {
 
     public static void main(String[] args) throws Exception {
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.enableCheckpointing(5000);
         String kafkaBrokers = "localhost:9092";
 
         KafkaSource<String> salesSource = KafkaSource.<String>builder()
